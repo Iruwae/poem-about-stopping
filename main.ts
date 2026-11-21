@@ -17,5 +17,12 @@ The dog stays.
 So do I.
 `;
 
+// The gate: 1–280 Unicode code points, not only white space.
+const points = [...poem].length;
+if (points < 1 || points > 280 || !/\S/.test(poem)) {
+  console.error(`poem is ${points} code points, outside the 1–280 gate`);
+  process.exit(1);
+}
+
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", poem, "utf8");
